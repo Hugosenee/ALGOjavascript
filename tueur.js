@@ -42,15 +42,12 @@ for (let i = 0; i < 5; i++) {
 
 
 
-while(Jason.health >= 0 && nbsurvivant.length == 0){
+while(Jason.health >= 0 ){
     let random_number = Math.random();
     let random_player = nbsurvivant[Math.floor(Math.random() * nbsurvivant.length)];
     if (random_player.caracteristique.prob_dead > random_number){
         console.log('Jason a tué ',random_player.name)
         nbsurvivant.splice(nbsurvivant.indexOf(random_player), 1)
-        if (nbsurvivant.length == 0){
-            break
-        }
     }   else if (random_player.caracteristique.prob_degat > random_number){
         Jason.health -= 10;
         console.log(random_player.name , 'a réussi à esquiver et inflige 10 de dégats à Jason')
@@ -58,10 +55,11 @@ while(Jason.health >= 0 && nbsurvivant.length == 0){
         Jason.health -= 15;
         console.log(random_player.name , 'est mort mais a réussi à infliger 15 de dégats à Jason')
         nbsurvivant.splice(nbsurvivant.indexOf(random_player), 1)
-        if (nbsurvivant.length == 0){
-            break
-        }
     }
+    if(nbsurvivant == 0){
+        break
+    }
+
 }   if(nbsurvivant.length == 0){
     console.log('Jason a triomphé il lui restait ', jason.health , 'de vie')
 }   else {
